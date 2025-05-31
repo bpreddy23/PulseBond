@@ -1,0 +1,89 @@
+/* style.css */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #fceabb, #f8b500);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  margin-top: 40px;
+  padding: 30px;
+  width: 90%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+input, button, label {
+  font-size: 16px;
+}
+
+input[type="text"], input[type="file"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #f8b500;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d89e00;
+}
+
+section {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+#voiceRecorder button {
+  margin: 5px 0;
+}
+
+#moodDisplay {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #444;
+}
+
+#coupleImages img, #heartImage img {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  object-fit: cover;
+  border-radius: 10px;
+} 
+
+#heartImage img {
+  width: 60px;
+  height: 60px;
+} 
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoodMate - Voice Mood Detection</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="container">
+    <h1>MoodMate ❤️</h1>
+    <div id="auth-section">
+      <h2>Sign Up / Login</h2>
+      <input type="text" id="username" placeholder="Enter your name" />
+      <button onclick="registerUser()">Start Onboarding</button>
+    </div>
+
+    <div id="onboarding-section" style="display:none">
+      <h2>Upload Couple Pictures</h2>
+      <input type="file" id="couplePhotos" multiple accept="image/*" />
+
+      <h3>Record Your Voice (30 sec each)</h3>
+      <div>
+        <label>Mood: </label>
+        <select id="moodSelect">
+          <option value="Happy">Happy</option>
+          <option value="Sad">Sad</option>
+          <option value="Angry">Angry</option>
+          <option value="Calm">Calm</option>
+        </select>
+        <button onclick="startRecording()">Start Recording</button>
+        <button onclick="stopRecording()">Stop</button>
+      </div>
+
+      <div id="recordingsList"></div>
+      <button onclick="finishOnboarding()">Finish Onboarding</button>
+    </div>
+
+    <div id="live-section" style="display:none">
+      <h2>Live Mood Detection</h2>
+      <div id="currentMood">Detecting mood...</div>
+      <img id="moodImage" src="" alt="Mood display" style="display:none" />
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

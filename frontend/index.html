@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice Mood Detector</title>
+</head>
+<body>
+    <h1>Register User</h1>
+    <form id="register-form" enctype="multipart/form-data">
+        Name: <input type="text" name="name" id="reg-name" required><br><br>
+        Upload WAV files (Neutral_x.wav, Happy_x.wav, Sad_x.wav): <input type="file" id="reg-files" name="files" multiple required><br><br>
+        <button type="submit">Register</button>
+    </form>
+    <p id="register-result"></p>
+
+    <hr>
+
+    <h1>Detect Mood</h1>
+    <form id="detect-form" enctype="multipart/form-data">
+        Name: <input type="text" name="name" id="det-name" required><br><br>
+        Upload WAV file: <input type="file" id="det-file" name="file" required><br><br>
+        <button type="submit">Detect Mood</button>
+    </form>
+    <p id="detect-result"></p>
+
+<script>
+document.getElementById('register-form').onsubmit = async function(e) {
+    e.preventDefault();
+    const name = document.getElementById('reg-name').value;
+    const files = document.getElementById('reg-files').files;
+    const formData = new FormData();
+    formData.append('name', name);
+    for(let i=0; i<files.length; i++) {
+        formData.append('files', files[i]);
+    }
+    const response = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        body: formData
+    });
+    const result = await response.json();
+    document.getElementById('register-result').innerText = JSON.stringify(result);
+};
+
+document.getElementById('detect-form').onsubmit = async function(e) {
+    e.preventDefault();
+    const name = document.getElementById('det-name').value;
+    const file = document.getElementById('det-file').files[0];
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('file', file);
+    const response = await fetch('http://localhost:5000/detect', {
+        method: 'POST',
+        body: formData
+    });
+    const result = await response.json();
+    document.getElementById('detect-result').innerText = JSON.stringify(result);
+};
+</script>
+</body>
+</html>

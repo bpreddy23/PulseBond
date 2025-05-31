@@ -1,0 +1,6 @@
+flask
+numpy
+librosa
+torch
+soundfile
+resemblyzer

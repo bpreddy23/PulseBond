@@ -7,7 +7,7 @@ import librosa
 
 app = Flask(__name__)
 
-# Utility functions (same as your code)
+# Utility functions
 def extract_pitch_energy(wav_path):
     y, sr = librosa.load(wav_path, sr=None)
     pitches, magnitudes = librosa.piptrack(y=y, sr=sr)
@@ -31,11 +31,10 @@ def load_profile(name):
         tone_features = pickle.load(f)
     return embedding, tone_features
 
-encoder = VoiceEncoder()  # Initialize once to save time
+encoder = VoiceEncoder()  # Initialize once
 
 @app.route('/register', methods=['POST'])
 def register():
-    # Expecting form-data with 'name' and multiple wav files
     name = request.form.get('name')
     if not name:
         return jsonify({'error': 'Name is required'}), 400
@@ -44,13 +43,13 @@ def register():
     if os.path.exists(profile_dir):
         return jsonify({'error': 'Username already exists'}), 400
 
-    # Save wav files temporarily
     moods = ["Neutral", "Happy", "Sad"]
     tone_features = {}
     all_neutral_embeddings = []
 
     os.makedirs(profile_dir, exist_ok=True)
 
+    # Process files for each mood
     for mood in moods:
         files_for_mood = [f for f in request.files if f.startswith(mood)]
         if not files_for_mood:
